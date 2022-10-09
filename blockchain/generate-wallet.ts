@@ -10,6 +10,9 @@ import {
   
   const newWalletName = process.argv[2];
   const currentWallets = getWallets();
+
+  if (currentWallets[newWalletName]) throw Error("The account name like that already exist!");
+
   const currentTransactions = getTransactions();
   
   const newPair = ec.genKeyPair();
