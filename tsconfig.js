@@ -1,11 +1,11 @@
 module.exports = {
     "compilerOptions": {
-      "module": "commonjs",
+      "module": "CommonJS",
       "esModuleInterop": true,
       "target": "es6",
       "moduleResolution": "node",
       "sourceMap": true,
-      "outDir": "dist"
+      "outDir": "dist",
     },
     "lib": ["es2015"]
   }

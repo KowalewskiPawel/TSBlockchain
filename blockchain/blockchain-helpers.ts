@@ -2,14 +2,14 @@ import { readFileSync, writeFileSync } from "fs";
 
 /** blockchain helpers **/
 function getBlockchain() {
-  const blockchainFile = readFileSync("./blockchain.json");
+  const blockchainFile = readFileSync("./blockchain/blockchain.json");
   const blockchain = JSON.parse(String(blockchainFile));
   return blockchain;
 }
 
-function writeBlockchain(blockchain) {
+function writeBlockchain(blockchain: any) {
   const blockchainString = JSON.stringify(blockchain, null, 2);
-  writeFileSync("./blockchain.json", blockchainString);
+  writeFileSync("./blockchain/blockchain.json", blockchainString);
 }
 
 const _getBlockchain = getBlockchain;
@@ -19,14 +19,14 @@ export { _writeBlockchain as writeBlockchain };
 
 /** transaction helpers **/
 function getTransactions() {
-  const transactionsFile = readFileSync("./transactions.json");
+  const transactionsFile = readFileSync("./blockchain/transactions.json");
   const transactions = JSON.parse(String(transactionsFile));
   return transactions;
 }
 
-function writeTransactions(transactions) {
+function writeTransactions(transactions: any) {
   const transactionsString = JSON.stringify(transactions, null, 2);
-  writeFileSync("./transactions.json", transactionsString);
+  writeFileSync("./blockchain/transactions.json", transactionsString);
 }
 
 const _getTransactions = getTransactions;
@@ -36,17 +36,17 @@ export { _writeTransactions as writeTransactions };
 
 /** wallet helpers **/
 function getWallets() {
-  const walletsFile = readFileSync("./wallets.json");
+  const walletsFile = readFileSync("./blockchain/wallets.json");
   const wallets = JSON.parse(String(walletsFile));
   return wallets;
 }
 
-function writeWallets(wallets) {
+function writeWallets(wallets: any) {
   const walletsString = JSON.stringify(wallets, null, 2);
-  writeFileSync("./wallets.json", walletsString);
+  writeFileSync("./blockchain/wallets.json", walletsString);
 }
 
-function getWalletAddressFromName(name) {
+function getWalletAddressFromName(name: any) {
   const wallets = getWallets();
   return wallets[name].publicKey;
 }
@@ -60,15 +60,15 @@ export { _getWalletAddressFromName as getWalletAddressFromName };
 
 /** item helpers **/
 function getRandomItem() {
-  const itemsFile = readFileSync("./items.json");
+  const itemsFile = readFileSync("./blockchain/items.json");
   const items = JSON.parse(String(itemsFile));
   const itemKeys = Object.keys(items);
   const randomItem = itemKeys[Math.floor(Math.random() * itemKeys.length)];
   return randomItem;
 }
 
-function getItemPrice(item) {
-  const itemsFile = readFileSync("./items.json");
+function getItemPrice(item: any) {
+  const itemsFile = readFileSync("./blockchain/items.json");
   const items = JSON.parse(String(itemsFile));
   return items[item];
 }
@@ -79,7 +79,7 @@ const _getItemPrice = getItemPrice;
 export { _getItemPrice as getItemPrice };
 
 /** address helpers **/
-function getAddressBalance(address) {
+function getAddressBalance(address: any) {
   const blockchain = getBlockchain();
   const transactions = getTransactions();
   let balance = 0;
@@ -116,11 +116,11 @@ function getAddressBalance(address) {
   return balance;
 }
 
-function getAddressItems(address) {
+function getAddressItems(address: any) {
   const blockchain = getBlockchain();
   const transactions = getTransactions();
 
-  const items = {
+  const items: any = {
     icon: 0,
     spray: 0,
     pose: 0,
