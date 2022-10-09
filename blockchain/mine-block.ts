@@ -25,5 +25,5 @@ import { Block } from './types';
     transactions: currentTransactions
   };
   
-  writeBlockchain([...currentBlockchain]);
+  writeBlockchain([...currentBlockchain, newBlock]);
   writeTransactions([]);
