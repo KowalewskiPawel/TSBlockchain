@@ -1,3 +1,4 @@
+import EC from 'elliptic';
 import {
     getAddressBalance,
     getTransactions,
@@ -5,12 +6,10 @@ import {
     writeTransactions
   } from './blockchain-helpers';
   
-  import EC from 'elliptic';
   const ec = new EC.ec('p192');
   
   const buyerPrivateKey = process.argv[2];
   const itemBought = process.argv[3];
-  // Add your code below
   const currentTransactions = getTransactions();
   
   const itemPrice = getItemPrice(itemBought);

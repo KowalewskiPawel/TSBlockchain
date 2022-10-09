@@ -1,3 +1,4 @@
+import EC from 'elliptic';
 import {
     getTransactions,
     writeTransactions,
@@ -5,11 +6,9 @@ import {
     writeWallets
   } from './blockchain-helpers';
   
-  import EC from 'elliptic';
   const ec = new EC.ec('p192');
   
   const newWalletName = process.argv[2];
-  // Add your code below
   const currentWallets = getWallets();
   const currentTransactions = getTransactions();
   

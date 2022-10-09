@@ -1,13 +1,14 @@
 import { readFileSync, writeFileSync } from "fs";
+import { Blockchain, Items, Transaction, Wallets } from "./types";
 
 /** blockchain helpers **/
-function getBlockchain() {
+const getBlockchain = (): Blockchain => {
   const blockchainFile = readFileSync("./blockchain/blockchain.json");
   const blockchain = JSON.parse(String(blockchainFile));
   return blockchain;
 }
 
-function writeBlockchain(blockchain: any) {
+const writeBlockchain = (blockchain: Blockchain): void => {
   const blockchainString = JSON.stringify(blockchain, null, 2);
   writeFileSync("./blockchain/blockchain.json", blockchainString);
 }
@@ -18,13 +19,13 @@ const _writeBlockchain = writeBlockchain;
 export { _writeBlockchain as writeBlockchain };
 
 /** transaction helpers **/
-function getTransactions() {
+const getTransactions = (): Transaction[] => {
   const transactionsFile = readFileSync("./blockchain/transactions.json");
   const transactions = JSON.parse(String(transactionsFile));
   return transactions;
 }
 
-function writeTransactions(transactions: any) {
+const writeTransactions = (transactions: Transaction[]): void => {
   const transactionsString = JSON.stringify(transactions, null, 2);
   writeFileSync("./blockchain/transactions.json", transactionsString);
 }
@@ -35,18 +36,18 @@ const _writeTransactions = writeTransactions;
 export { _writeTransactions as writeTransactions };
 
 /** wallet helpers **/
-function getWallets() {
+const getWallets = (): Wallets => {
   const walletsFile = readFileSync("./blockchain/wallets.json");
   const wallets = JSON.parse(String(walletsFile));
   return wallets;
 }
 
-function writeWallets(wallets: any) {
+const writeWallets = (wallets: Wallets): void => {
   const walletsString = JSON.stringify(wallets, null, 2);
   writeFileSync("./blockchain/wallets.json", walletsString);
 }
 
-function getWalletAddressFromName(name: any) {
+const getWalletAddressFromName = (name: string): string => {
   const wallets = getWallets();
   return wallets[name].publicKey;
 }
@@ -59,17 +60,17 @@ const _getWalletAddressFromName = getWalletAddressFromName;
 export { _getWalletAddressFromName as getWalletAddressFromName };
 
 /** item helpers **/
-function getRandomItem() {
+const getRandomItem = (): string => {
   const itemsFile = readFileSync("./blockchain/items.json");
-  const items = JSON.parse(String(itemsFile));
+  const items: Items = JSON.parse(String(itemsFile));
   const itemKeys = Object.keys(items);
   const randomItem = itemKeys[Math.floor(Math.random() * itemKeys.length)];
   return randomItem;
 }
 
-function getItemPrice(item: any) {
+const getItemPrice = (item: string): number => {
   const itemsFile = readFileSync("./blockchain/items.json");
-  const items = JSON.parse(String(itemsFile));
+  const items: Items = JSON.parse(String(itemsFile));
   return items[item];
 }
 
@@ -79,7 +80,7 @@ const _getItemPrice = getItemPrice;
 export { _getItemPrice as getItemPrice };
 
 /** address helpers **/
-function getAddressBalance(address: any) {
+const getAddressBalance = (address: string): number => {
   const blockchain = getBlockchain();
   const transactions = getTransactions();
   let balance = 0;
@@ -87,6 +88,8 @@ function getAddressBalance(address: any) {
   // loop over blocks
   for (let i = 1; i < blockchain.length; i++) {
     const { transactions } = blockchain[i];
+
+    if (!transactions) continue;
 
     // loop over transactions
     for (let j = 0; j < transactions.length; j++) {
@@ -116,11 +119,11 @@ function getAddressBalance(address: any) {
   return balance;
 }
 
-function getAddressItems(address: any) {
+const getAddressItems = (address: string) => {
   const blockchain = getBlockchain();
   const transactions = getTransactions();
 
-  const items: any = {
+  const items: Items= {
     icon: 0,
     spray: 0,
     pose: 0,
@@ -131,6 +134,8 @@ function getAddressItems(address: any) {
   // loop over blocks
   for (let i = 1; i < blockchain.length; i++) {
     const { transactions } = blockchain[i];
+
+    if(!transactions) continue;
 
     // loop over transactions in blockchain
     for (let j = 0; j < transactions.length; j++) {
