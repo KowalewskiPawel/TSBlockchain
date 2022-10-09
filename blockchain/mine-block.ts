@@ -5,7 +5,7 @@ import {
     writeTransactions
   } from './blockchain-helpers';
   
-  import sha256 from 'crypto-js';
+  import sha256 from 'crypto-js/sha256';
   
   const ZEROS = "00";
   
