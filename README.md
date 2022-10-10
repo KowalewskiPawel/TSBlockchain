@@ -2,6 +2,7 @@
   <h1>TS Blockchain</h1>
   <strong>A simple blockchain built in TypeScript, inspired by <a href="https://github.com/freeCodeCamp/web3-curriculum">Web 3 FreeCodeCamp.org course</a>.</strong>
 </div>
+
 ## About
 
 Simple Blockchain, with minimal functionality implemented in TypeScript for the educational purposes.
