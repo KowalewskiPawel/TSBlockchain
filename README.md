@@ -35,7 +35,7 @@ npx ts-node blockchain/generate-wallet.ts <wallet_name>
 ```
 
 
-#### Mine Blockchain
+#### Mine Block
 
 ```
 npx ts-node blockchain/mine-block.ts 
