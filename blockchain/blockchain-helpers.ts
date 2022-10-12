@@ -49,6 +49,7 @@ const writeWallets = (wallets: Wallets): void => {
 
 const getWalletAddressFromName = (name: string): string => {
   const wallets = getWallets();
+  if(!wallets[name]) throw Error("There is no such a name on the wallet list!");
   return wallets[name].publicKey;
 }
 
