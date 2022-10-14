@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync } from "fs";
-import { Blockchain, Items, Transaction, Wallets } from "./types";
+import { Blockchain, Transaction, Wallets } from "./types";
 
 /** blockchain helpers **/
 const getBlockchain = (): Blockchain => {
@@ -60,26 +60,6 @@ export { _writeWallets as writeWallets };
 const _getWalletAddressFromName = getWalletAddressFromName;
 export { _getWalletAddressFromName as getWalletAddressFromName };
 
-/** item helpers **/
-const getRandomItem = (): string => {
-  const itemsFile = readFileSync("./blockchain/items.json");
-  const items: Items = JSON.parse(String(itemsFile));
-  const itemKeys = Object.keys(items);
-  const randomItem = itemKeys[Math.floor(Math.random() * itemKeys.length)];
-  return randomItem;
-}
-
-const getItemPrice = (item: string): number => {
-  const itemsFile = readFileSync("./blockchain/items.json");
-  const items: Items = JSON.parse(String(itemsFile));
-  return items[item];
-}
-
-const _getRandomItem = getRandomItem;
-export { _getRandomItem as getRandomItem };
-const _getItemPrice = getItemPrice;
-export { _getItemPrice as getItemPrice };
-
 /** address helpers **/
 const getAddressBalance = (address: string): number => {
   const blockchain = getBlockchain();
@@ -94,91 +74,31 @@ const getAddressBalance = (address: string): number => {
 
     // loop over transactions
     for (let j = 0; j < transactions.length; j++) {
-      const { buyerAddress, sellerAddress, price = 0 } = transactions[j];
-      if (buyerAddress === address) {
-        balance -= price;
+      const { senderAddress, receiverAddress, amount = 0 } = transactions[j];
+      if (senderAddress === address) {
+        balance -= amount;
       }
 
-      if (sellerAddress === address) {
-        balance += price;
+      if (receiverAddress === address) {
+        balance += amount;
       }
     }
   }
 
   // loop over transaction pool
   for (let i = 0; i < transactions.length; i++) {
-    const { buyerAddress, sellerAddress, price = 0 } = transactions[i];
-    if (buyerAddress === address) {
-      balance -= price;
+    const { senderAddress, receiverAddress, amount = 0 } = transactions[i];
+    if (senderAddress === address) {
+      balance -= amount;
     }
 
-    if (sellerAddress === address) {
-      balance += price;
+    if (receiverAddress === address) {
+      balance += amount;
     }
   }
 
   return balance;
 }
 
-const getAddressItems = (address: string) => {
-  const blockchain = getBlockchain();
-  const transactions = getTransactions();
-
-  const items: Items= {
-    icon: 0,
-    spray: 0,
-    pose: 0,
-    emote: 0,
-    skin: 0,
-  };
-
-  // loop over blocks
-  for (let i = 1; i < blockchain.length; i++) {
-    const { transactions } = blockchain[i];
-
-    if(!transactions) continue;
-
-    // loop over transactions in blockchain
-    for (let j = 0; j < transactions.length; j++) {
-      const {
-        buyerAddress,
-        sellerAddress,
-        itemBought = null,
-        itemSold = null,
-      } = transactions[j];
-
-      if (buyerAddress === address && itemBought) {
-        items[itemBought] += 1;
-      }
-
-      if (sellerAddress === address && itemSold) {
-        items[itemSold] -= 1;
-      }
-    }
-  }
-
-  // loop over transaction pool
-  for (let i = 0; i < transactions.length; i++) {
-    const {
-      buyerAddress,
-      sellerAddress,
-      itemBought = null,
-      itemSold = null,
-    } = transactions[i];
-
-    if (buyerAddress === address && itemBought) {
-      items[itemBought] += 1;
-    }
-
-    if (sellerAddress === address && itemSold) {
-      items[itemSold] -= 1;
-    }
-  }
-
-  return items;
-}
-
 const _getAddressBalance = getAddressBalance;
 export { _getAddressBalance as getAddressBalance };
-const _getAddressItems = getAddressItems;
-export { _getAddressItems as getAddressItems };

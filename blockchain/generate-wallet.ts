@@ -26,9 +26,8 @@ import {
   };
   
   const newTransaction = {
-    buyerAddress: null,
-    sellerAddress: newPublicKey,
-    price: 40
+    receiverAddress: newPublicKey,
+    amount: 40
   };
   
   writeWallets({ ...currentWallets, ...newWallet });
