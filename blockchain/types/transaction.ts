@@ -1,10 +1,6 @@
-export type Transaction = any; 
-
-// {
-//     buyerAddress: string | null,
-//     sellerAddress: string | null,
-//     price?: number,
-//     itemSold?: string,
-//     itemBought?: string,
-//     signature?: string
-// }
+export type Transaction = {
+    senderAddress: string,
+    receiverAddress: string,
+    amount: number,
+    signature?: string
+};

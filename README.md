@@ -46,23 +46,10 @@ npx ts-node blockchain/mine-block.ts
 ```
 npx ts-node blockchain/get-address-info.ts <wallet_name>
 ```
-
-#### Airdrop items to random wallets
-
-```
-npx ts-node blockchain/gift-items.ts
-```
-
-#### Buy Item
+#### Transfer tokens
 
 ```
-node buy-item.js <privateKey> <item>
-```
-
-#### Sell Item
-
-```
-node sell-item.js <privateKey> <item>
+npx ts-node blockchain/transfer.ts <sender_private_key> <amount> <receiver_public_key>
 ```
 
 ## License
