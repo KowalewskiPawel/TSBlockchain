@@ -1,5 +1,5 @@
 import { genesisBlock } from './consts';
-import { writeBlockchain, writeTransactions } from './blockchain-helpers';
+import { writeBlockchain, writeTransactions } from './utils';
 
 writeBlockchain([genesisBlock]);
 writeTransactions([]);

@@ -1,11 +1,9 @@
-import EC from 'elliptic';
 import {
     getAddressBalance,
     getTransactions,
-    writeTransactions
-  } from './blockchain-helpers';
-  
-  const ec = new EC.ec('p192');
+    writeTransactions,
+    ec
+  } from './utils';
   
   const senderPrivateKey = process.argv[2];
   const amount = Number(process.argv[3]);

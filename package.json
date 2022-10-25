@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "init-blockchain": "npx ts-node blockchain/init-blockchain.ts",
+    "generate-wallet": "npx ts-node blockchain/generate-wallet.ts",
+    "mine-block": "npx ts-node blockchain/mine-block.ts",
+    "get-address-info": "npx ts-node blockchain/get-address-info.ts",
+    "transfer": "npx ts-node blockchain/transfer.ts"
   },
   "keywords": [],
   "author": "",

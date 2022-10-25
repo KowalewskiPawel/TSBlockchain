@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync } from "fs";
-import { Blockchain, Transaction, Wallets } from "./types";
+import { Blockchain, Transaction, Wallets } from "../types";
 
 /** blockchain helpers **/
 const getBlockchain = (): Blockchain => {

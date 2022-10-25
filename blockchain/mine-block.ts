@@ -4,8 +4,8 @@ import {
     getTransactions,
     writeBlockchain,
     writeTransactions
-  } from './blockchain-helpers';
-  import { ZEROS } from "./consts";
+  } from './utils/blockchain-helpers';
+import { ZEROS } from "./consts";
 import { Block } from './types';
   
   const currentBlockchain = getBlockchain();

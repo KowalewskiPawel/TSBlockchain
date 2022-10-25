@@ -1,7 +1,7 @@
 import {
     getAddressBalance,
     getWalletAddressFromName
-  } from './blockchain-helpers';
+  } from './utils';
   
   const nameOfAddress = process.argv[2];
   

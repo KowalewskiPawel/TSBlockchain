@@ -25,31 +25,31 @@ Simple Blockchain, with minimal functionality implemented in TypeScript for the 
 #### Init Blockchain
 
 ```
-npx ts-node blockchain/init-blockchain.ts
+yarn init-blockchain
 ```
 
 #### Generate Wallet
 
 ```
-npx ts-node blockchain/generate-wallet.ts <wallet_name>
+yarn generate-wallet <wallet_name>
 ```
 
 
 #### Mine Block
 
 ```
-npx ts-node blockchain/mine-block.ts 
+yarn mine-block
 ```
 
 #### Get Address Info
 
 ```
-npx ts-node blockchain/get-address-info.ts <wallet_name>
+yarn get-address-info <wallet_name>
 ```
 #### Transfer tokens
 
 ```
-npx ts-node blockchain/transfer.ts <sender_private_key> <amount> <receiver_public_key>
+yarn transfer <sender_private_key> <amount> <receiver_public_key>
 ```
 
 ## License
