@@ -5,7 +5,7 @@
 
 ## About
 
-Simple Blockchain, with minimal functionality implemented in TypeScript for the educational purposes.
+Simple Blockchain, with minimal functionality implemented in TypeScript for the educational purpose.
 
 ## Installation
 

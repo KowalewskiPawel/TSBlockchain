@@ -1,5 +1,5 @@
 export type Transaction = {
-    senderAddress: string,
+    senderAddress?: string,
     receiverAddress: string,
     amount: number,
     signature?: string

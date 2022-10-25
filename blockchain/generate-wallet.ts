@@ -11,7 +11,7 @@ import {
   const newWalletName = process.argv[2];
   const currentWallets = getWallets();
 
-  if (currentWallets[newWalletName]) throw Error("The account name like that already exist!");
+  if (currentWallets[newWalletName]) throw Error("The account name already exist!");
 
   const currentTransactions = getTransactions();
   
