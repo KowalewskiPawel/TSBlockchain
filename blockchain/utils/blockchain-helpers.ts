@@ -67,7 +67,7 @@ const getAddressBalance = (address: string): number => {
   let balance = 0;
 
   // loop over blocks
-  for (let i = 1; i < blockchain.length; i++) {
+  for (let i = 0; i < blockchain.length; i++) {
     const { transactions } = blockchain[i];
 
     if (!transactions) continue;
@@ -86,10 +86,11 @@ const getAddressBalance = (address: string): number => {
   }
 
   // loop over transaction pool
+
   for (let i = 0; i < transactions.length; i++) {
-    const { senderAddress, receiverAddress, amount = 0 } = transactions[i];
+    const { senderAddress, receiverAddress, amount = 0, gasFee = 0 } = transactions[i];
     if (senderAddress === address) {
-      balance -= amount;
+      balance -= amount + gasFee;
     }
 
     if (receiverAddress === address) {

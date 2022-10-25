@@ -1,6 +1,4 @@
 import {
-    getTransactions,
-    writeTransactions,
     getWallets,
     writeWallets,
     ec
@@ -10,8 +8,6 @@ import {
   const currentWallets = getWallets();
 
   if (currentWallets[newWalletName]) throw Error("The account name already exist!");
-
-  const currentTransactions = getTransactions();
   
   const newPair = ec.genKeyPair();
   const newPublicKey = newPair.getPublic("hex");
@@ -23,10 +19,4 @@ import {
     }
   };
   
-  const newTransaction = {
-    receiverAddress: newPublicKey,
-    amount: 40
-  };
-  
   writeWallets({ ...currentWallets, ...newWallet });
-  writeTransactions([...currentTransactions, newTransaction]);
