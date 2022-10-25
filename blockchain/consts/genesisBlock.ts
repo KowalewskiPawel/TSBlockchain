@@ -5,6 +5,7 @@ import { TOTAL_SUPPLY } from "./totalSupply";
 export const genesisBlock: Block = {
   hash: "0",
   previousHash: "0",
+  nonce: 0,
   transactions: [
     {
       senderAddress: "0",
