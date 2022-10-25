@@ -38,7 +38,7 @@ yarn generate-wallet <wallet_name>
 #### Mine Block
 
 ```
-yarn mine-block
+yarn mine-block <miner_private_key>
 ```
 
 #### Get Address Info
@@ -49,7 +49,7 @@ yarn get-address-info <wallet_name>
 #### Transfer tokens
 
 ```
-yarn transfer <sender_private_key> <amount> <receiver_public_key>
+yarn transfer <sender_private_key> <amount> <gas_fee> <receiver_public_key>
 ```
 
 ## License
