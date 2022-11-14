@@ -7,30 +7,23 @@ const CHANNELS = {
   BLOCKCHAIN: "BLOCKCHAIN",
 };
 
-const handleMessage = (channel, message) => {
+const publisher = redis.createClient();
+const subscriber = redis.createClient();
+
+const handleMessage = (channel: string, message: string) => {
     console.log(`Message received. Channel: ${channel}. Message: ${message}.`);
-    const parsedMessage = JSON.parse(message);
 
     if (channel === CHANNELS.BLOCKCHAIN) {
+      const parsedMessage = JSON.parse(message);
       writeBlockchain(parsedMessage);
     }
 };
 
-const publish = (publisher: any, { channel, message}) => {
-    publisher.publish(channel, message);
-  }
+export const broadcastChain = (blockchain: Block[]) => {
+    publisher.publish(CHANNELS.BLOCKCHAIN, JSON.stringify(blockchain));
+};
 
-export const broadcastChain = () => {
-    publish({
-      channel: CHANNELS.BLOCKCHAIN,
-      message: JSON.stringify(blockchain)
-    });
-  }
-
-export const initPubSub = async (blockchain: Block[]) => {
-  const publisher = redis.createClient();
-  const subscriber = redis.createClient();
-
+export const initPubSub = async () => {
   subscriber.subscribe([...Object.values(CHANNELS)], (channel, message) => handleMessage(channel, message));
 
   await publisher.connect();

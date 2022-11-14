@@ -2,12 +2,13 @@ import express from 'express';
 import bodyParser from "body-parser";
 import { initBlockchain } from './blockchain';
 import { getBlockchain } from './blockchain/utils';
-import { initPubSub } from './pubsub';
+import { initPubSub, broadcastChain } from './pubsub';
 
 const app = express();
 initBlockchain();
 const blockchain = getBlockchain();
-initPubSub(blockchain);
+initPubSub();
+setTimeout(() => broadcastChain(blockchain), 1000);
 
 
 app.use(bodyParser.json());
