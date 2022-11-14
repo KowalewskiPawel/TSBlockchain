@@ -9,14 +9,15 @@ import {
   } from './utils';
 import { BLOCK_REWARD, GENESIS_ADDRESS, ZEROS } from "./consts";
 import { Block, Transaction } from './types';
+
+export const mineBlockchain = (minerPrivateKey: string) => {
   
   const currentBlockchain = getBlockchain();
   const listOfTransactions = [...getTransactions()];
   const previousHash = currentBlockchain[currentBlockchain.length-1].hash;
   let newHash = "";
   let nonce = 0;
-
-  const minerPrivateKey = process.argv[2];
+  
   const minerKeypair = ec.keyFromPrivate(minerPrivateKey);
   const minerAddress = minerKeypair.getPublic('hex');
 
@@ -53,3 +54,4 @@ import { Block, Transaction } from './types';
   
   writeBlockchain([...currentBlockchain, newBlock]);
   writeTransactions([]);
+}
