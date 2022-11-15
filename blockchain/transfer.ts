@@ -19,7 +19,7 @@ export const transfer = (
   const senderKeypair = ec.keyFromPrivate(senderPrivateKey);
   const senderAddress = senderKeypair.getPublic("hex");
 
-  const signature = senderKeypair.sign(senderAddress + amount).toDER("hex");
+  const signature = senderKeypair.sign(senderAddress + amount + gasFee).toDER("hex");
 
   const transaction = {
     senderAddress,
