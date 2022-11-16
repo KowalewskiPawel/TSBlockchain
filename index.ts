@@ -77,10 +77,9 @@ app.post("/api/transfer", (req, res) => {
   try {
     const { senderPrivateKey, amount, gasFee, receiverPublicKey } = req.body;
 
-    transfer(senderPrivateKey, amount, gasFee, receiverPublicKey);
-    const currentTransactions = getTransactions();
+    const newTransaction = transfer(senderPrivateKey, amount, gasFee, receiverPublicKey);
     broadcastNewTransaction(
-      currentTransactions[currentTransactions.length - 1]
+      newTransaction
     );
     return res
       .status(200)

@@ -42,7 +42,7 @@ const addBlock = (message: string) => {
   const isLastHashValid =
     currentBlockchain.at(-1)?.hash === parsedBlock.lastBlock.previousHash;
   if (isBlockchainLonger && isLastHashValid && isLastBlockNumberValid) {
-    console.log(`New block added: ${parsedBlock}.`);
+    console.log(`New block added: ${parsedBlock.lastBlock}.`);
     writeBlockchain([...currentBlockchain, parsedBlock.lastBlock]);
     writeTransactions(parsedBlock.transactions);
   }
@@ -50,9 +50,9 @@ const addBlock = (message: string) => {
 
 const addTransaction = (message: string) => {
   const parsedTransaction = JSON.parse(message);
-  const { publicKey, amount, gasFee, signature } = parsedTransaction;
+  const { senderAddress, amount, gasFee, signature } = parsedTransaction;
   const isTransactionValid = verifySignature(
-    publicKey,
+    senderAddress,
     amount,
     gasFee,
     signature
