@@ -28,7 +28,7 @@ initBlockchain();
 initPubSub();
 
 const wallets = getWallets();
-const minerPrivateKey = wallets.newMinerWalletName.privateKey;
+const minerPrivateKey = wallets[newMinerWalletName].privateKey;
 
 setInterval(() => {
   const transactions = getTransactions();
