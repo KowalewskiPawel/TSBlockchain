@@ -67,9 +67,11 @@ app.post("/api/mine", (req, res) => {
     return res.status(200).send({ success: true, message: "New Block mined" });
   } catch (error) {
     console.error("Block not mined", error);
+    /* @ts-ignore */
+    const { message } = error;
     return res.status(500).json({
       error: true,
-      message: error,
+      message: message,
     });
   }
 });
@@ -87,9 +89,11 @@ app.post("/api/transfer", (req, res) => {
       .send({ success: true, message: "Transaction added to the mempool" });
   } catch (error) {
     console.error("Block not mined", error);
+    /* @ts-ignore */
+    const { message } = error;
     return res.status(500).json({
       error: true,
-      message: error,
+      message: message,
     });
   }
 });
