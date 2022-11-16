@@ -17,6 +17,7 @@ import {
   initPubSub,
   broadcastMinedBlock,
   broadcastNewTransaction,
+  syncChainRequest,
 } from "./pubsub";
 import { oneMinuteUnix } from "./blockchain/consts";
 
@@ -92,6 +93,10 @@ app.post("/api/transfer", (req, res) => {
     });
   }
 });
+
+setTimeout(() => {
+  syncChainRequest();
+}, 1000);
 
 const PORT = 3000;
 app.listen(PORT, () => {
