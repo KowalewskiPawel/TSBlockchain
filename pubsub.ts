@@ -60,7 +60,7 @@ const addTransaction = (message: string) => {
   if (isTransactionValid) {
     const currentTransactions = getTransactions();
     const newTransactions = [...currentTransactions, parsedTransaction].sort(
-      (transactionA, transactionB) => transactionA.gasFee - transactionB.gasFee
+      (transactionA, transactionB) => transactionB.gasFee - transactionA.gasFee
     );
     writeTransactions(newTransactions);
   }
