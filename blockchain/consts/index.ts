@@ -4,3 +4,4 @@ export * from "./totalSupply";
 export * from "./blockReward";
 export * from "./genesisAddress";
 export * from "./minimumGasFee";
+export * from "./oneMinuteUnix";

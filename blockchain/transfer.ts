@@ -1,9 +1,12 @@
 import { MINIMUM_GAS_FEE } from "./consts";
+import { Transaction } from "./types";
 import {
   getAddressBalance,
   getTransactions,
   writeTransactions,
   ec,
+  getUnixTimestamp,
+  newUuid,
 } from "./utils";
 
 export const transfer = (
@@ -21,7 +24,9 @@ export const transfer = (
 
   const signature = senderKeypair.sign(senderAddress + amount + gasFee).toDER("hex");
 
-  const transaction = {
+  const transaction: Transaction = {
+    transactionId: newUuid(),
+    transactionTimestamp: getUnixTimestamp(),
     senderAddress,
     receiverAddress: receiverPublicKey,
     amount,
