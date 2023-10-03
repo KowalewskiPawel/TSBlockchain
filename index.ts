@@ -53,7 +53,7 @@ setInterval(() => {
 
 app.use(bodyParser.json());
 
-app.post("/api/mine", (_, res) => {
+app.put("/api/mine", (_, res) => {
   try {
     mineBlockchain(minerPrivateKey);
     const blockchainNew = getBlockchain();
@@ -64,7 +64,7 @@ app.post("/api/mine", (_, res) => {
       currentTransactions
     );
 
-    return res.status(200).send({ success: true, message: "New Block mined" });
+    return res.status(201).send({ success: true, message: "New Block mined" });
   } catch ({ message }) {
     console.error("Block not mined", message);
     return res.status(500).json({
@@ -76,6 +76,7 @@ app.post("/api/mine", (_, res) => {
 
 app.post("/api/transfer", (req, res) => {
   try {
+    // VERY UNSAFE! TODO: send only the already signed message so that there is no need to send the whole private key
     const { senderPrivateKey, amount, gasFee, receiverPublicKey } = req.body;
 
     const newTransaction = transfer(
