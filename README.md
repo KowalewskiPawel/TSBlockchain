@@ -22,6 +22,8 @@ Simple Blockchain, with minimal functionality implemented in TypeScript for the 
 
 ### Usage
 
+First of all install the dependencies locally, start the redis server for P2P emulation using `redis-server` command, and after that start the instance of the Blockchain node with command `yarn start`
+
 #### Init Blockchain
 
 ```
