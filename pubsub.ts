@@ -20,6 +20,7 @@ const publisher = redis.createClient();
 const subscriber = redis.createClient();
 
 const syncBlockchain = (message: string) => {
+  // TODO: Add blockchain validation!
   const currentBlockchain = getBlockchain();
   const currentTransactions = getTransactions();
   const { blockchain, transactions } = JSON.parse(message);
