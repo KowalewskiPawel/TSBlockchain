@@ -37,9 +37,9 @@ export const writeWallets = (wallets: Wallets): void => {
   writeFileSync("./blockchain/wallets.json", walletsString);
 }
 
-export const getWalletAddressFromName = (name: string): string => {
+export const getWalletAddressFromName = (name: string): string | Error => {
   const wallets = getWallets();
-  if(!wallets[name]) throw Error("There is no such a name on the wallet list!");
+  if(!wallets[name]) throw new Error("There is no such a name on the wallet list!");
   return wallets[name].publicKey;
 }
 

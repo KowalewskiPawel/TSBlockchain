@@ -65,10 +65,8 @@ app.post("/api/mine", (req, res) => {
     );
 
     return res.status(200).send({ success: true, message: "New Block mined" });
-  } catch (error) {
-    console.error("Block not mined", error);
-    /* @ts-ignore */
-    const { message } = error;
+  } catch ({ message }) {
+    console.error("Block not mined", message);
     return res.status(500).json({
       error: true,
       message: message,
@@ -80,17 +78,18 @@ app.post("/api/transfer", (req, res) => {
   try {
     const { senderPrivateKey, amount, gasFee, receiverPublicKey } = req.body;
 
-    const newTransaction = transfer(senderPrivateKey, amount, gasFee, receiverPublicKey);
-    broadcastNewTransaction(
-      newTransaction
+    const newTransaction = transfer(
+      senderPrivateKey,
+      amount,
+      gasFee,
+      receiverPublicKey
     );
+    broadcastNewTransaction(newTransaction);
     return res
       .status(200)
       .send({ success: true, message: "Transaction added to the mempool" });
-  } catch (error) {
-    console.error("Block not mined", error);
-    /* @ts-ignore */
-    const { message } = error;
+  } catch ({ message }) {
+    console.error("Block not mined", message);
     return res.status(500).json({
       error: true,
       message: message,
