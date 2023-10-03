@@ -53,7 +53,7 @@ setInterval(() => {
 
 app.use(bodyParser.json());
 
-app.post("/api/mine", (req, res) => {
+app.post("/api/mine", (_, res) => {
   try {
     mineBlockchain(minerPrivateKey);
     const blockchainNew = getBlockchain();
